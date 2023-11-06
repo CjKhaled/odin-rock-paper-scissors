@@ -47,15 +47,17 @@ userChoice.addEventListener("click", (e) => {
   switch (target.id) {
     case "rock":
       result = game(target.id)
-      break;
     case "scissors":
       result = game(target.id)
-      break;
+      
     case "paper":
       result = game(target.id)
-      break;
+
+    // Incrementing the wins by targeting the id
+    document.getElementById(result).innerHTML = parseInt(document.getElementById(result).innerHTML) + 1
   }
 
+  
 
 //   const text = document.createTextNode(result)
 //   gameResult.appendChild(text)
