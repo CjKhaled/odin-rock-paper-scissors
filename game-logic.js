@@ -4,11 +4,6 @@ getComputerChoice = () => {
   return computerChoice;
 };
 
-getPlayerSelection = () => {
-  getInput = prompt("Pick your move");
-  return getInput.toLowerCase();
-};
-
 playRound = (playerSelection, computerChoice) => {
   if (playerSelection === computerChoice) {
     return "Tie!";
@@ -27,30 +22,42 @@ playRound = (playerSelection, computerChoice) => {
   }
 };
 
-function game() {
-  let playerWins = 0;
-  let computerWins = 0;
-  let ties = 0;
-
-  console.log(`Wins: ${playerWins}, Losses: ${computerWins}, Ties: ${ties}`);
+function game(playerSelection) {
+  let computerSelection = getComputerChoice()
+  let result = playRound(playerSelection, computerSelection)
+  
+  if (result.startsWith("Player")) {
+        return "player"
+    } else if (result.startsWith('Computer')) {
+        return "computer"
+    } else {
+        return "tie"
+    }
 }
 
 // Used event delegation to lower the amount of listeners i'd have to use
 
 const userChoice = document.querySelector(".select-buttons");
+const gameResult = document.querySelector(".results")
 
 userChoice.addEventListener("click", (e) => {
   let target = e.target;
+  let result = null
 
   switch (target.id) {
     case "rock":
-      console.log("ROCK");
+      result = game(target.id)
       break;
     case "scissors":
-      console.log("SCISSORS");
+      result = game(target.id)
       break;
     case "paper":
-      console.log("PAPER");
+      result = game(target.id)
       break;
   }
+
+
+//   const text = document.createTextNode(result)
+//   gameResult.appendChild(text)
+  
 });
