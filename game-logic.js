@@ -53,13 +53,19 @@ userChoice.addEventListener("click", (e) => {
     case "paper":
       result = game(target.id)
 
-    // Incrementing the wins by targeting the id
-    document.getElementById(result).innerHTML = parseInt(document.getElementById(result).innerHTML) + 1
+    // Incrementing the wins by targeting the id of the game result
+    let scoreBoard = document.getElementById(result)
+    scoreBoard.innerHTML = parseInt(document.getElementById(result).innerHTML) + 1
+    // Making sure a tie isn't counted as a win
+    if (scoreBoard.innerHTML == 5 && result !== "tie") {
+        alert(`${result} wins!`)
+
+        // Bringing each value to zero when someone wins
+        let resetAll = document.querySelectorAll('small')
+        resetAll.forEach((value) => {
+            value.innerHTML = 0
+        })
+    }
   }
-
-  
-
-//   const text = document.createTextNode(result)
-//   gameResult.appendChild(text)
-  
+ 
 });
